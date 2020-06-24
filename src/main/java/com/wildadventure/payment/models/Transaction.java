@@ -16,8 +16,8 @@ public class Transaction {
 	@GeneratedValue
 	@Column(name="TRANSACTION_ID")
 	private Long id;
-	@Column(name="DATE")
-	private Date date;
+	@Column(name="UPDATE_DATE")
+	private Date updateDate;
 	@Column(name="TRANSACTION_NUMBER")
 	private String transactionNumber;
 	@Column(name="MESSAGE")
@@ -43,11 +43,14 @@ public class Transaction {
 		
 	}
 	
-	public Transaction(Long id, Date date, String transactionNumber, String message, String status,
-			String fundingSource, String payerName, String payerFirstname, String payerMail, String payerCountryCode) {
+	
+
+	public Transaction(Long id, Date updateDate, String transactionNumber, String message, String status,
+			String fundingSource, String payerName, String payerFirstname, String payerMail, String payerCountryCode,
+			Payment payment) {
 		super();
 		this.id = id;
-		this.date = date;
+		this.updateDate = updateDate;
 		this.transactionNumber = transactionNumber;
 		this.message = message;
 		this.status = status;
@@ -56,6 +59,23 @@ public class Transaction {
 		this.payerFirstname = payerFirstname;
 		this.payerMail = payerMail;
 		this.payerCountryCode = payerCountryCode;
+		this.payment = payment;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
 	}
 
 	public Long getId() {
@@ -64,14 +84,6 @@ public class Transaction {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
 	}
 
 	public String getTransactionNumber() {
@@ -137,4 +149,16 @@ public class Transaction {
 	public void setPayerCountryCode(String payerCountryCode) {
 		this.payerCountryCode = payerCountryCode;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Transaction [id=" + id + ", updateDate=" + updateDate + ", transactionNumber=" + transactionNumber
+				+ ", message=" + message + ", status=" + status + ", fundingSource=" + fundingSource + ", payerName="
+				+ payerName + ", payerFirstname=" + payerFirstname + ", payerMail=" + payerMail + ", payerCountryCode="
+				+ payerCountryCode + ", payment=" + payment + "]";
+	}
+	
+	
 }

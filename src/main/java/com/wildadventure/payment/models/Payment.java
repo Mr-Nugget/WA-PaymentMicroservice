@@ -1,5 +1,6 @@
 package com.wildadventure.payment.models;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -19,6 +20,8 @@ public class Payment {
 	private Long bookingId;
 	@Column(name="PRICE")
 	private Float price;
+	@Column(name="CREATE_DATE")
+	private Date createDate;
 	@Column(name="CURRENCY")
 	private String currency;
 	@Column(name="AUTHORIZED")
@@ -29,6 +32,10 @@ public class Payment {
 	
 	public Payment() {
 		
+	}
+	
+	public Payment(Long id) {
+		this.id = id;
 	}
 
 	public Payment(Long id, Long bookingId, Float price, String currency, Boolean authorized,
@@ -48,6 +55,14 @@ public class Payment {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	public Long getBookingId() {

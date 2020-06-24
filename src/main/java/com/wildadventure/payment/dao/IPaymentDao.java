@@ -8,4 +8,7 @@ import com.wildadventure.payment.models.Payment;
 @Repository
 public interface IPaymentDao extends JpaRepository<Payment, Long> {
 
+	public Payment findByBookingId(Long bookingId);
+	
+	
 }
