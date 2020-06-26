@@ -16,10 +16,10 @@
 	<name>payment</name>
 	<description>Microservice Payment for WildAdventure API. Handle payments informations.</description>
 
-	 <properties>
-    <java.version>1.8</java.version>
-    <spring-cloud.version>Hoxton.SR5</spring-cloud.version>
-  </properties>
+	<properties>
+		<java.version>1.8</java.version>
+		<spring-cloud.version>Hoxton.SR5</spring-cloud.version>
+	</properties>
 
 	<dependencies>
 		<dependency>

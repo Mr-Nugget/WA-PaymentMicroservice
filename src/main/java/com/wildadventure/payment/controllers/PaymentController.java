@@ -1,10 +1,6 @@
 package com.wildadventure.payment.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wildadventure.payment.exceptions.BadRequestException;
 import com.wildadventure.payment.models.Payment;
 import com.wildadventure.payment.models.PaymentRequestMapping;
-import com.wildadventure.payment.models.PaymentResponseMapping;
 import com.wildadventure.payment.models.RequestUpdateBooking;
 import com.wildadventure.payment.models.Transaction;
 import com.wildadventure.payment.proxies.IBookingProxy;
@@ -51,7 +46,7 @@ public class PaymentController {
 	 * @throws BadRequestException 
 	 */
 	@PostMapping("/add")
-	public ResponseEntity<PaymentResponseMapping> addPayment(@RequestBody PaymentRequestMapping request) throws BadRequestException{
+	public ResponseEntity<Object> addPayment(@RequestBody PaymentRequestMapping request) throws BadRequestException{
 		log.info(request);
 		if(request != null) {
 			// Check if the payment exists
@@ -67,9 +62,12 @@ public class PaymentController {
 				
 				if(paymentCreated != null && transactionCreated != null) {
 					if(paymentCreated.getAuthorized()){
-						bookingProxy.updatePayment(new RequestUpdateBooking(true, paymentCreated.getBookingId()));
+						Object booking = bookingProxy.updatePayment(new RequestUpdateBooking(true, paymentCreated.getBookingId()));
+						if(booking != null) {
+							return ResponseEntity.ok(booking);
+						}
 					}
-					return ResponseEntity.ok(new PaymentResponseMapping());
+					return ResponseEntity.status(400).build();
 				}else {
 					return ResponseEntity.status(400).build();
 				}
@@ -82,7 +80,12 @@ public class PaymentController {
 				Transaction transactionCreated = transactionService.addTransaction(transactionAdded);
 				
 				if(transactionCreated != null) {
-					return ResponseEntity.ok(new PaymentResponseMapping());
+					Object booking = bookingProxy.updatePayment(new RequestUpdateBooking(true, paymentExists.getBookingId()));
+					if(booking != null) {
+						return ResponseEntity.ok(booking);
+					}else {
+						return ResponseEntity.status(400).build();
+					}
 				}else {
 					return ResponseEntity.status(400).build();
 				}

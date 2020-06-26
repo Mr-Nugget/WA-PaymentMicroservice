@@ -10,5 +10,5 @@ import com.wildadventure.payment.models.RequestUpdateBooking;
 public interface IBookingProxy {
 	
 	@PostMapping(value= "/Booking/updatePayment")
-	public Boolean updatePayment(@RequestBody RequestUpdateBooking request);
+	public Object updatePayment(@RequestBody RequestUpdateBooking request);
 }
