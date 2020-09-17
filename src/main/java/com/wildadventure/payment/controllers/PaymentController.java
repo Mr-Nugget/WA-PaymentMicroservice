@@ -19,7 +19,6 @@ import com.wildadventure.payment.services.IPaymentService;
 import com.wildadventure.payment.services.ITransactionService;
 import com.wildadventure.payment.utils.IPaymentUtils;
 
-@CrossOrigin(origins="http://localhost:4200", maxAge=3600)
 @RestController
 @RequestMapping("/Payment")
 public class PaymentController {
