@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "cbae2c98-9c94-4bb0-a532-9e20032fbb97",
+		"name": "Payment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:12090/Payment/add",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0X3JhaW1iYXVsdEB5YWhvby5mciIsImV4cCI6MTU5MjQzNjMwOSwiaWF0IjoxNTkyNDAwMzA5fQ.PVdnwcChqu656O52PDp5EwVoOofrExu2Ug1Pa5oya3Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0X3JhaW1iYXVsdEB5YWhvby5mciIsImV4cCI6MTU5MjMzODQ2NiwiaWF0IjoxNTkyMzAyNDY2fQ._EHYCv9oFMg7BMgBvq3viPb6LuZHLJGLiGjkUwSg2bE",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"authorized\": true,\r\n    \"bookingId\": 1,\r\n    \"createDate\": \"2020-06-24T13:01:44Z\",\r\n    \"currency\": \"EUR\",\r\n    \"fundingSource\": \"paypal\",\r\n    \"message\": \"\",\r\n    \"payerCountryCode\": \"FR\",\r\n    \"payerFirstname\": \"John\",\r\n    \"payerMail\": \"sb-jiiul2364071@personal.example.com\",\r\n    \"payerName\": \"Doe\",\r\n    \"price\": 2799,\r\n    \"status\": \"COMPLETED\",\r\n    \"transactionNumber\": \"08G23332KV6300118\",\r\n    \"updateDate\": \"2020-06-24T13:01:44Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:12090/Payment/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "12090",
+					"path": [
+						"Payment",
+						"add"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
